@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <!--safe——》将内容的格式展现出来-->
+        {{content | safe}}
+        <br>
+        {% for name in names %}
+        <!--upper——》将所有单词大写-->
+        <!--lower——》将所有单词小写-->
+        <!--capfirst——》首字母大写-->
+        <!--length——》计算长度-->
+        <!--first/last——》获取变量首个/最后元素-->
+        <br>
+        {{name}}&nbsp{{name|upper|lower}}&nbsp{{name | lower| capfirst}}&nbsp{{name | length }}&nbsp{{name | first}}&nbsp{{name| last}}
+        <br>
+        {% endfor %}
+        <br>
+
+</body>
+</html>

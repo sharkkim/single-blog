@@ -1,0 +1,43 @@
+{% extends 'backweb/base.html' %}
+
+    {% block title %}
+     添加文章页面
+    {% endblock %}
+
+    {% block css %}
+    {% endblock %}
+
+    {% block js %}
+        {% load static %}
+        <script src="{% static 'kindeditor/kindeditor-all-min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'kindeditor/lang/zh-CN.js' %}" type="text/javascript"></script>
+        <script type="text/javascript">
+            KindEditor.ready(function(K) {
+                window.editor = K.create('#editor_id',{
+                    uploadJson:'/util/upload/kindeditor'
+                });
+            });
+        </script>
+    {% endblock %}
+
+    {% block content %}
+        {{ form.errors.title }}
+        {{ form.errors.desc }}
+        {{ form.errors.content }}
+        {{form.errors.picture}}
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <p>标题:<input type="text" name="title" value="{{article.title}}"></p>
+            <p>关键字:<input type="text" name="desc" value="{{article.desc}}"></p>
+            <p>内容:<textarea id="editor_id" name="content">{{article.content}}</textarea></p>
+            <p>图片:<input type="file" name="picture">
+                {% if article.icon %}
+                    <img src="/media/{{ article.icon }}" alt="">
+                {% endif %}
+            </p>
+
+            <input type="submit" value="提交">
+
+        </form>
+
+    {% endblock %}
